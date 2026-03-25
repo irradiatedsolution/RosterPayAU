@@ -22,6 +22,9 @@
     "scheme": "rosterpay",
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "android": {
+      "package": "au.rosterpay.app"
+    }
   }
 }
