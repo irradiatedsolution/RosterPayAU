@@ -1,22 +1,23 @@
 {
   "expo": {
-    "name": "RosterPay AU",
+    "name": "RosterPayAU",
     "slug": "rosterpay-au",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#1E3A5F"
+      "backgroundColor": "#4D9FD6"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "au.rosterpay.app"
+      "bundleIdentifier": "au.rosterpay.app",
+      "icon": "./assets/icon.png"
     },
     "scheme": "rosterpay",
     "plugins": [
