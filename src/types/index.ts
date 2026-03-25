@@ -7,7 +7,7 @@ export interface WagePeriod { id: string; from: string; to: string | null; rate:
 export interface AllowancePreset { id: string; name: string; defaultAmount: number | null; taxable: boolean; color: string; }
 export interface ShiftPreset { id: string; label: string; start: string; end: string; brk: number; color: string; }
 export interface Deduction { id: string; name: string; amount: number; }
-export interface Person { id: string; name: string; type: ProfileType; employer: string; position: string; employeeId: string; payFreq: PayFrequency; residency: TaxResidency; wageType: "hourly"|"salary"; employmentType: EmploymentType; contractHours: number; leaveBalance: number; wageHistory: WagePeriod[]; allowancePresets: AllowancePreset[]; shiftPresets: ShiftPreset[]; deductions: Deduction[]; createdAt: string; payPeriodStartDate: string; }
+export interface Person { id: string; name: string; type: ProfileType; employer: string; position: string; employeeId: string; payFreq: PayFrequency; residency: TaxResidency; wageType: "hourly"|"salary"; employmentType: EmploymentType; contractHours: number; leaveBalance: number; wageHistory: WagePeriod[]; allowancePresets: AllowancePreset[]; shiftPresets: ShiftPreset[]; deductions: Deduction[]; createdAt: string; payPeriodStartDate: string; emoji: string; }
 export interface ShiftAllowance { id: string; presetId: string | null; name: string; amount: number; taxable: boolean; color: string; }
 export interface ShiftDay { personId: string; date: string; off: false; shiftPresetId: string | null; label: string; start: string; end: string; brk: number; grossHours: number; netHours: number; allowances: ShiftAllowance[]; }
 export interface DayOff { personId: string; date: string; off: true; }

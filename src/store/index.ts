@@ -66,6 +66,8 @@ function makeDefaultPerson(name = '', type: ProfileType = 'self'): Person {
     deductions: [],
     createdAt: todayISO(),
     payPeriodStartDate: '2025-03-17',
+    emoji: '👤',
+    emoji: '👤',
   };
 }
 
