@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView, TextInput, Modal, KeyboardAvoidingView, Platform, Keyboard, Share, Linking } from 'react-native';
 import { useState, useCallback } from 'react';
-import { usePersonStore, useRosterStore } from '../../src/store';
+import { usePersonStore, useRosterStore, useSubStore } from '../../src/store';
 
 const C = {
   bg:'#F0F4FF', white:'#FFFFFF', navy:'#1E3A5F',
@@ -99,6 +99,10 @@ export default function RosterScreen() {
   const { setEntry, removeEntry, getEntry } = useRosterStore.getState();
   const rosterEntries = useRosterStore(s => s.entries);
 
+  const isPro = useSubStore(s => s.isPro);
+  const setPlan = useSubStore(s => s.setPlan);
+  const [showUpgrade, setShowUpgrade] = useState(false);
+
   const myShiftPresets = person?.shiftPresets?.filter((sp:any) => sp.label) || [];
   const myAllowPresets = person?.allowancePresets?.filter((ap:any) => ap.name) || [];
   const shiftPresetsToUse = myShiftPresets.length > 0 ? myShiftPresets : DEFAULT_SHIFT_PRESETS;
@@ -159,6 +163,7 @@ export default function RosterScreen() {
 
   function saveDraft(){
     if(pickerDay===null||!person) return;
+
     const brk=parseFloat(draft.brk)||0;
     const net=calcHours(draft.start,draft.end,brk);
     const iso=toISO(year,month,pickerDay);
@@ -625,6 +630,80 @@ export default function RosterScreen() {
                 </View>
               </>;
             })()}
+          </ScrollView>
+        </SafeAreaView>
+      </Modal>
+
+      {/* ══ UPGRADE MODAL ════════════════════════════════════ */}
+      <Modal visible={showUpgrade} animationType="slide" presentationStyle="pageSheet">
+        <SafeAreaView style={s.modalSafe}>
+          <ScrollView contentContainerStyle={s.modalContent}>
+            <TouchableOpacity onPress={()=>setShowUpgrade(false)} style={[s.closeBtn,{alignSelf:'flex-end'}]}>
+              <Text style={s.closeBtnTxt}>✕</Text>
+            </TouchableOpacity>
+
+            <Text style={{fontSize:48,textAlign:'center',marginBottom:8}}>⭐</Text>
+            <Text style={{fontSize:22,fontWeight:'900',color:C.navy,textAlign:'center',marginBottom:8}}>Upgrade to Pro</Text>
+            <Text style={{fontSize:14,color:C.muted,textAlign:'center',marginBottom:24,lineHeight:20}}>
+              You have used your 5 free roster days.
+
+            </Text>
+
+            <View style={{gap:12,marginBottom:20}}>
+              {[
+                '📅 Unlimited roster entries',
+                '💰 Full payslip history',
+                '👥 Multiple profiles',
+                '📤 Share & export',
+                '🌴 Leave tracking',
+              ].map(f=>(
+                <View key={f} style={{flexDirection:'row',alignItems:'center',gap:10}}>
+                  <Text style={{fontSize:14}}>{f.split(' ')[0]}</Text>
+                  <Text style={{fontSize:14,color:C.text,fontWeight:'600'}}>{f.split(' ').slice(1).join(' ')}</Text>
+                </View>
+              ))}
+            </View>
+
+            <View style={{flexDirection:'row',gap:12,marginBottom:16}}>
+              <TouchableOpacity
+                onPress={()=>{setPlan('pro5_monthly' as any);setShowUpgrade(false);}}
+                style={{flex:1,backgroundColor:C.bg,borderRadius:14,padding:16,alignItems:'center',borderWidth:2,borderColor:C.border}}>
+                <Text style={{fontSize:11,color:C.muted,fontWeight:'700',marginBottom:4}}>MONTHLY</Text>
+                <Text style={{fontSize:26,fontWeight:'900',color:C.navy}}>$1.99</Text>
+                <Text style={{fontSize:11,color:C.muted,fontWeight:'600'}}>per month</Text>
+                <Text style={{fontSize:10,color:C.muted,marginTop:6}}>Cancel anytime</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={()=>{setPlan('pro5_lifetime' as any);setShowUpgrade(false);}}
+                style={{flex:1,backgroundColor:C.navy,borderRadius:14,padding:16,alignItems:'center',borderWidth:2,borderColor:C.teal}}>
+                <View style={{backgroundColor:C.teal,borderRadius:20,paddingHorizontal:10,paddingVertical:2,marginBottom:4}}>
+                  <Text style={{fontSize:9,color:'#fff',fontWeight:'800'}}>BEST VALUE</Text>
+                </View>
+                <Text style={{fontSize:11,color:'rgba(255,255,255,0.6)',fontWeight:'700',marginBottom:4}}>ONE-TIME</Text>
+                <Text style={{fontSize:26,fontWeight:'900',color:'#fff'}}>$49.99</Text>
+                <Text style={{fontSize:11,color:'rgba(255,255,255,0.6)',fontWeight:'600'}}>lifetime access</Text>
+                <Text style={{fontSize:10,color:C.teal,marginTop:6,fontWeight:'700'}}>Pay once · use forever</Text>
+              </TouchableOpacity>
+            </View>
+
+            <Text style={{fontSize:11,color:C.muted,textAlign:'center',marginBottom:16}}>
+              🔒 Secure · 7-day money back · Australian owned
+            </Text>
+
+            {/* Enterprise */}
+            <TouchableOpacity
+              onPress={()=>Linking.openURL('mailto:irradiatedsolution@gmail.com?subject=RosterPay AU Enterprise Enquiry&body=Hi, I need more than 20 profiles. Please contact me.')}
+              style={{backgroundColor:'#F0F4FF',borderRadius:12,borderWidth:1.5,borderColor:'#CBD5E1',padding:14,alignItems:'center',marginBottom:10}}>
+              <Text style={{color:'#1E3A5F',fontWeight:'800',fontSize:13}}>🏢 Need more than 20 profiles?</Text>
+              <Text style={{color:'#64748B',fontWeight:'600',fontSize:11,marginTop:3}}>Contact us for Enterprise pricing</Text>
+              <Text style={{color:'#0EA5A0',fontWeight:'700',fontSize:11,marginTop:2}}>irradiatedsolution@gmail.com</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>setShowUpgrade(false)}
+              style={{backgroundColor:C.bg,borderRadius:12,borderWidth:1.5,borderColor:C.border,padding:14,alignItems:'center'}}>
+              <Text style={{color:C.muted,fontWeight:'700'}}>Maybe later</Text>
+            </TouchableOpacity>
           </ScrollView>
         </SafeAreaView>
       </Modal>

@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView, TextInput, Switch, Keyboard } from 'react-native';
-import { usePersonStore } from '../../src/store';
+import { usePersonStore, useSubStore } from '../../src/store';
+import { Alert } from 'react-native';
 
 const C = {
   bg:'#F0F4FF', white:'#FFFFFF', navy:'#1E3A5F',
