@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Switch, Keyboard, Modal, Alert, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { usePersonStore, useSubStore } from '../../src/store';
+import { useIAP } from '../../src/hooks/useIAP';
 
 const C = {
   bg:'#F0F4FF', white:'#FFFFFF', navy:'#1E3A5F',
@@ -449,12 +450,20 @@ export default function SettingsScreen() {
                 <Text style={{fontSize:16,fontWeight:'900',color:plan.best?'#fff':C.navy,marginBottom:2}}>{plan.title}</Text>
                 <Text style={{fontSize:12,color:plan.best?'rgba(255,255,255,0.6)':C.muted,fontWeight:'600',marginBottom:12}}>{plan.sub}</Text>
                 <View style={{flexDirection:'row',gap:10}}>
-                  <TouchableOpacity onPress={()=>{setPlan(plan.planM as any);setShowUpgrade(false);}}
+                  <TouchableOpacity onPress={async()=>{
+                      const pkg = packages.find(p=>p.product.identifier===plan.planM);
+                      if(pkg){ const ok = await purchasePackage(pkg); if(ok) setShowUpgrade(false); }
+                      else { setPlan(plan.planM as any); setShowUpgrade(false); }
+                    }}
                     style={{flex:1,backgroundColor:plan.best?'rgba(255,255,255,0.1)':'#fff',borderRadius:12,padding:12,alignItems:'center',borderWidth:1.5,borderColor:plan.best?'rgba(255,255,255,0.2)':C.border}}>
                     <Text style={{fontSize:16,fontWeight:'900',color:plan.best?'#fff':C.navy}}>{plan.monthly}</Text>
                     <Text style={{fontSize:10,color:plan.best?'rgba(255,255,255,0.6)':C.muted}}>per month</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={()=>{setPlan(plan.planL as any);setShowUpgrade(false);}}
+                  <TouchableOpacity onPress={async()=>{
+                      const pkg = packages.find(p=>p.product.identifier===plan.planL);
+                      if(pkg){ const ok = await purchasePackage(pkg); if(ok) setShowUpgrade(false); }
+                      else { setPlan(plan.planL as any); setShowUpgrade(false); }
+                    }}
                     style={{flex:1,backgroundColor:C.teal,borderRadius:12,padding:12,alignItems:'center'}}>
                     <Text style={{fontSize:16,fontWeight:'900',color:'#fff'}}>{plan.lifetime}</Text>
                     <Text style={{fontSize:10,color:'rgba(255,255,255,0.8)'}}>pay once · forever</Text>

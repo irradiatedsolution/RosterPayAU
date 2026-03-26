@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)file:///Users/seanwon/Downloads/privacy-policy.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy – RosterPayAU</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Serif+Display&display=swap');
+
+  :root {
+    --navy: #0D2240;
+    --teal: #00B899;
+    --bg: #F4F7FB;
+    --white: #ffffff;
+    --text: #1A2B3C;
+    --muted: #5A6F82;
+    --border: #DDE5EF;
+    --accent-light: #E6FAF7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* Header */
+  header {
+    background: var(--navy);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: var(--teal);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .logo-text { color: #fff; }
+  .logo-text .name { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .logo-text .name span { color: var(--teal); }
+  .logo-text .sub { font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 400; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(0,184,153,0.15) 0%, transparent 60%);
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    color: #fff;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 15px;
+    position: relative;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--teal);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    position: relative;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Main */
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 50px 24px 80px;
+  }
+
+  /* Highlight box */
+  .highlight {
+    background: var(--accent-light);
+    border-left: 4px solid var(--teal);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .highlight .icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+  .highlight p { color: #0D6B5A; font-weight: 500; font-size: 15px; }
+
+  /* Section */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 30px 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(13,34,64,0.05);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .section h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .section p, .section li {
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .section ul {
+    padding-left: 18px;
+    margin-top: 8px;
+  }
+  .section li { margin-bottom: 6px; }
+
+  /* Warning box */
+  .warning {
+    background: #FFF8E6;
+    border: 1px solid #F5C842;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #7A5800;
+    line-height: 1.65;
+  }
+  .warning strong { display: block; margin-bottom: 4px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Contact */
+  .contact {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    margin-top: 32px;
+  }
+  .contact h2 { color: #fff; font-size: 18px; margin-bottom: 8px; }
+  .contact p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 16px; }
+  .contact a {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    text-decoration: none;
+    padding: 11px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 16px 20px; }
+    .hero { padding: 40px 20px 36px; }
+    .section { padding: 22px 20px; }
+    main { padding: 30px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-icon">🦘</div>
+  <div class="logo-text">
+    <div class="name">RosterPay<span>AU</span></div>
+    <div class="sub">Australian Roster &amp; Payslip</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="badge">Legal</div>
+  <h1>Privacy Policy</h1>
+  <p>Last updated: March 2026</p>
+</div>
+
+<main>
+
+  <div class="highlight">
+    <div class="icon">🔒</div>
+    <p>RosterPayAU does not collect, store, or transmit any personal data. All information you enter stays entirely on your device.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📱</div>
+      <h2>1. Information We Collect</h2>
+    </div>
+    <p><strong style="color:var(--navy)">We do not collect any personal information.</strong></p>
+    <p style="margin-top:10px">RosterPayAU is a fully offline application. All data you enter — including your name, wage, work hours, allowances, and payslip information — is stored locally on your device only and is never transmitted to any server.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">☁️</div>
+      <h2>2. Data Storage &amp; Third Parties</h2>
+    </div>
+    <p>We do not use any third-party analytics, advertising networks, or data collection services. We do not share any data with third parties — because no data ever leaves your device.</p>
+    <ul style="margin-top:12px">
+      <li>No analytics or tracking</li>
+      <li>No advertising SDKs</li>
+      <li>No cloud sync or backup by this app</li>
+      <li>No account creation required</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📧</div>
+      <h2>3. Email &amp; Sharing Features</h2>
+    </div>
+    <p>When you choose to email a payslip or share your roster, the app uses your device's built-in Mail or Messages app. RosterPayAU does not have access to your email account, contacts, or message history. Any sharing is entirely initiated and controlled by you.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">⚠️</div>
+      <h2>4. Disclaimer — Tax &amp; Financial Calculations</h2>
+    </div>
+    <p>RosterPayAU provides payslip and tax estimates based on publicly available Australian Tax Office (ATO) guidelines for general reference purposes only.</p>
+    <div class="warning">
+      <strong>Important Notice</strong>
+      The calculations in this app are indicative estimates only and do not constitute financial, tax, or legal advice. RosterPayAU and its developer accept no responsibility or liability for any errors, omissions, or outcomes arising from the use of this app. Always consult a registered tax agent or accountant for advice specific to your situation.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">👶</div>
+      <h2>5. Children's Privacy</h2>
+    </div>
+    <p>RosterPayAU is intended for use by adults in the workforce. We do not knowingly collect any information from children under the age of 13.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🔄</div>
+      <h2>6. Changes to This Policy</h2>
+    </div>
+    <p>We may update this Privacy Policy from time to time. Any changes will be reflected with an updated date at the top of this page. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <div class="contact">
+    <h2>Questions?</h2>
+    <p>If you have any questions about this Privacy Policy, please contact us.</p>
+    <a href="mailto:irradiatedsolution@gmail.com">irradiatedsolution@gmail.com</a>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 RosterPayAU &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; Melbourne, Australia
+</footer>
+
+
+
+</body></html>

@@ -13,6 +13,7 @@
     "@react-native-async-storage/async-storage": "^2.2.0",
     "expo": "~55.0.8",
     "expo-dev-client": "~55.0.18",
+    "expo-linking": "~55.0.8",
     "expo-mail-composer": "~55.0.9",
     "expo-router": "~55.0.7",
     "expo-status-bar": "~55.0.4",
@@ -20,7 +21,6 @@
     "react-native": "0.83.2",
     "react-native-gesture-handler": "~2.30.0",
     "react-native-purchases": "^9.14.0",
-    "react-native-reanimated": "4.2.1",
     "react-native-safe-area-context": "~5.6.2",
     "react-native-screens": "~4.23.0",
     "zustand": "^5.0.12"
