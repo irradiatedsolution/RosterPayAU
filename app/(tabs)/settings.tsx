@@ -51,6 +51,7 @@ export default function SettingsScreen() {
   const isPro           = useSubStore(s => s.isPro);
   const plan            = useSubStore.getState().subscription?.plan || 'free';
   const setPlan         = useSubStore(s => s.setPlan);
+  const { purchasePackage, restorePurchases, packages, isLoading } = useIAP();
 
   const store = usePersonStore.getState();
   const {
