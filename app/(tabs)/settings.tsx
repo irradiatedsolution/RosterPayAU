@@ -489,6 +489,27 @@ export default function SettingsScreen() {
         </SafeAreaView>
       </Modal>
 
+      {/* Restore Purchases + EULA */}
+      <View style={s.legalSection}>
+        <TouchableOpacity
+          style={s.restoreBtn}
+          onPress={async () => {
+            const ok = await restorePurchases();
+            Alert.alert(ok ? 'Restored' : 'Nothing to Restore', ok ? 'Your purchases have been restored.' : 'No previous purchases found.');
+          }}
+        >
+          <Text style={s.restoreBtnTxt}>Restore Purchases</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => Linking.openURL('https://irradiatedsolution.github.io/RosterPayAU/terms')}>
+          <Text style={s.legalLink}>Terms of Use (EULA)</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => Linking.openURL('https://irradiatedsolution.github.io/RosterPayAU/privacy')}>
+          <Text style={s.legalLink}>Privacy Policy</Text>
+        </TouchableOpacity>
+      </View>
+
     </SafeAreaView>
   );
 }
@@ -519,6 +540,10 @@ function FPick({label,value,options,labels,onChange}:any){
 import React from 'react';
 
 const s = StyleSheet.create({
+  legalSection: { paddingHorizontal: 20, paddingVertical: 16, gap: 12, alignItems: 'center' },
+  restoreBtn: { backgroundColor: '#1E3A5F', borderRadius: 10, paddingVertical: 12, paddingHorizontal: 32 },
+  restoreBtnTxt: { color: '#fff', fontWeight: '700', fontSize: 15 },
+  legalLink: { color: '#1E3A5F', fontSize: 13, textDecorationLine: 'underline' },
   safe:{flex:1,backgroundColor:C.bg},
   content:{padding:14,paddingBottom:60},
   title:{fontSize:20,fontWeight:'900',color:C.navy,marginBottom:16},

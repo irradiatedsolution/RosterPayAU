@@ -26,6 +26,9 @@
     ],
     "android": {
       "package": "au.rosterpay.app"
+    },
+    "extra": {
+      "revenueCatKey": "appl_iHuTtIBepoBhyrNijUroKKLstPC"
     }
   }
 }

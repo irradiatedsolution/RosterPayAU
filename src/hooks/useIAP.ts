@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Purchases, { PurchasesPackage, CustomerInfo } from 'react-native-purchases';
 
-const REVENUECAT_API_KEY = 'test_qiSgFSNciHoHPHdaWZAzwwqwWXD';
+const REVENUECAT_API_KEY = 'appl_iHuTtIBepoBhyrNijUroKKLstPC';
 
 export type PlanType = 'free' | 'pro5' | 'pro20';
 
@@ -22,7 +22,6 @@ export function useIAP() {
   }
 
   useEffect(() => {
-    Purchases.configure({ apiKey: REVENUECAT_API_KEY });
 
     const loadData = async () => {
       try {
