@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Modal,
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState, useCallback } from 'react';
 import { usePersonStore, useRosterStore, useSubStore } from '../../src/store';
+import { useIAP } from '../../src/hooks/useIAP';
 
 const C = {
   bg:'#F0F4FF', white:'#FFFFFF', navy:'#1E3A5F',
@@ -101,7 +102,7 @@ export default function RosterScreen() {
   const rosterEntries = useRosterStore(s => s.entries);
 
   const isPro = useSubStore(s => s.isPro);
-  const setPlan = useSubStore(s => s.setPlan);
+  const { packages, purchasePackage } = useIAP();
   const [showUpgrade, setShowUpgrade] = useState(false);
 
   const myShiftPresets = person?.shiftPresets?.filter((sp:any) => sp.label) || [];
@@ -667,7 +668,10 @@ export default function RosterScreen() {
 
             <View style={{flexDirection:'row',gap:12,marginBottom:16}}>
               <TouchableOpacity
-                onPress={()=>{setPlan('pro5_monthly' as any);setShowUpgrade(false);}}
+                onPress={async()=>{
+                    const pkg = packages.find(p=>p.product.identifier==='au.rosterpay.app.pro5monthly');
+                    if(pkg){ const ok = await purchasePackage(pkg); if(ok) setShowUpgrade(false); }
+                  }}
                 style={{flex:1,backgroundColor:C.bg,borderRadius:14,padding:16,alignItems:'center',borderWidth:2,borderColor:C.border}}>
                 <Text style={{fontSize:11,color:C.muted,fontWeight:'700',marginBottom:4}}>MONTHLY</Text>
                 <Text style={{fontSize:26,fontWeight:'900',color:C.navy}}>$1.99</Text>
@@ -676,7 +680,10 @@ export default function RosterScreen() {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={()=>{setPlan('pro5_lifetime' as any);setShowUpgrade(false);}}
+                onPress={async()=>{
+                    const pkg = packages.find(p=>p.product.identifier==='au.rosterpay.app.pro5lifetime');
+                    if(pkg){ const ok = await purchasePackage(pkg); if(ok) setShowUpgrade(false); }
+                  }}
                 style={{flex:1,backgroundColor:C.navy,borderRadius:14,padding:16,alignItems:'center',borderWidth:2,borderColor:C.teal}}>
                 <View style={{backgroundColor:C.teal,borderRadius:20,paddingHorizontal:10,paddingVertical:2,marginBottom:4}}>
                   <Text style={{fontSize:9,color:'#fff',fontWeight:'800'}}>BEST VALUE</Text>

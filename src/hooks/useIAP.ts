@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSubStore } from '../store';
 import Purchases, { PurchasesPackage, CustomerInfo } from 'react-native-purchases';
 
 const REVENUECAT_API_KEY = 'appl_iHuTtIBepoBhyrNijUroKKLstPC';
@@ -11,13 +12,18 @@ export function useIAP() {
   const [isLoading, setIsLoading] = useState(true);
   const [planType, setPlanType] = useState<PlanType>('free');
 
+  const setPlan = useSubStore(s => s.setPlan);
+
   function updatePlan(info: CustomerInfo) {
     if (info.entitlements.active['pro20']) {
       setPlanType('pro20');
+      setPlan('pro20_monthly');
     } else if (info.entitlements.active['pro5']) {
       setPlanType('pro5');
+      setPlan('pro5_monthly');
     } else {
       setPlanType('free');
+      setPlan('free');
     }
   }
 
