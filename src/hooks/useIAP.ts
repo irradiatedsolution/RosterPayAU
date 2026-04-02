@@ -8,7 +8,7 @@ export type PlanType = 'free' | 'pro5' | 'pro20';
 
 export function useIAP() {
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo | null>(null);
-  const [packages, setPackages] = useState<PurchasesPackage[]>([]);
+  const [packages, setPackages] = useState<PurchasesPackage[]>(cachedPackages);
   const [isLoading, setIsLoading] = useState(true);
   const [planType, setPlanType] = useState<PlanType>('free');
 
@@ -35,8 +35,9 @@ export function useIAP() {
         setCustomerInfo(info);
         updatePlan(info);
         const offerings = await Purchases.getOfferings();
-        if (offerings.current) {
-          setPackages(offerings.current.availablePackages);
+        if (offerings.current && offerings.current.availablePackages.length > 0) {
+          cachedPackages = offerings.current.availablePackages;
+          setPackages(cachedPackages);
         }
       } catch (e) {
         console.log('IAP Error:', e);
